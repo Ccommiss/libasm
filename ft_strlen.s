@@ -1,5 +1,8 @@
 global ft_strlen
 SECTION .text
+
+
+
 ft_strlen:
 	mov   rbx, rdi   ;save rdiadd  in rbx
     ;xor eax, eax ; equivalent to  mov eax, 0, 0 but more efficient

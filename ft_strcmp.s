@@ -5,8 +5,8 @@ ft_strcmp :
 	je finishrdi
 	cmp byte [rsi], 0
 	je finishrsi
-	mov ax, [rdi]
-	mov bx, [rsi]
+	movzx ax, [rdi]
+	movzx bx, [rsi]
 	cmp ax, bx
 	jne notequ
 	inc rdi
@@ -15,16 +15,22 @@ ft_strcmp :
 finishrdi :
 	cmp byte [rsi], 0 ;;si les deux = 0, alors les chaines sont pareilles
 	je equal
-	mov rax, -1
+	movzx rbx, byte[rdi]
+	movzx rax, byte[rsi]
+	sub rbx, rax
+	mov rax, rbx
 	ret
 finishrsi :
 	cmp byte [rdi], 0 ;;si les deux = 0, alors les chaines sont pareilles
 	je equal
-	mov rax, 1
+	movzx rbx, byte[rdi]
+	movzx rax, byte[rsi]
+	sub rbx, rax
+	mov rax, rbx
 	ret
 equal :
 	mov rax, 0
-	ret
+ 	ret
 notequ :
 	cmp ax, bx
 	jg finishrsi

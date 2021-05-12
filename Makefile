@@ -12,12 +12,21 @@
 
 NAME = libasm.a
 
-SRCS = *.s
+SRCS = ft_read.s \
+	ft_strcmp.s \
+	ft_strcpy.s \
+	ft_strlen.s \
+	ft_read.s \
+	ft_write.s \
+	ft_addnumbers.s \
+	helloworld.s \
+	myhello.s \
+	ft_strdup.s
 
 FLAGS = -Wall -Werror -Wextra
+NASM = nasm -f elf64 -g 
 OBJS = $(SRCS:.s=.o)
 NORME = norminette
-CC = nasm -f elf64 -g
 
 
 # This is a minimal set of ANSI/VT100 color codes
@@ -53,7 +62,12 @@ all : message $(NAME)
 message :
 	@printf "$(_BOLD)$(_PINK)%-30s$(_END) $(_WHITE)$(_LIGHT)%s$(_END)\n" [$(WP)] "Your $(NAME) files are compiling..."
 
-$(NAME): 
+
+%.o: %.s
+	$(NASM) $< -o $@
+
+$(NAME): $(OBJS)
+	printf "coucou name"
 	@ar -rc $(NAME) $(OBJS)
 	@ranlib $(NAME)
 
