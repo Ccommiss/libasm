@@ -18,13 +18,10 @@ SRCS = ft_read.s \
 	ft_strlen.s \
 	ft_read.s \
 	ft_write.s \
-	ft_addnumbers.s \
-	helloworld.s \
-	myhello.s \
 	ft_strdup.s
 
 FLAGS = -Wall -Werror -Wextra
-NASM = nasm -f elf64 -g 
+NASM = nasm -f elf64 -g
 OBJS = $(SRCS:.s=.o)
 NORME = norminette
 

@@ -7,14 +7,13 @@ ft_read:
 	syscall
 	cmp	rax, 0
 	jl error
-	mov	rdi, rsi
-	call ft_strlen
 	ret
 
-error :
-	neg		rax			; car le syscall renvoie dans rax errno mais en negatif
-	mov		r9, rax		; rdi sert de tampon car apres rax prendera le retour de errno location
-	call	__errno_location wrt ..plt	; errno location renvoie un pointeur sur errno
-	mov		[rax], r9		; ici rax contient l'adresse de errno donc en faisant ca on met rdi dans errno
-	mov		rax, -1			; on met rax à -1 pour renvoyer la bonne valeur d'un appel à write
-	ret					; return rax
+
+error:
+	neg        rax            ; rax is set to minus error code to be given to errno
+    mov        rdi, rax       ; give the code to rdi so it is sent to errno
+    call        __errno_location  wrt ..plt    ; errno location puts
+    mov        [rax], rdi            ; put the error code at the place pointed by errnolocation address
+    mov        rax, -1                ; rax = -1
+    ret                        ; return rax
