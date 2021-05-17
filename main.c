@@ -1,9 +1,22 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ccommiss <ccommiss@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/05/14 16:15:36 by ccommiss          #+#    #+#             */
+/*   Updated: 2021/05/14 16:15:37 by ccommiss         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <stdio.h>
 #include <string.h>
 #include <unistd.h>
 #include <stdlib.h>
 #include <errno.h>
 #include "libasm.h"
+#include <curses.h>
 
 
 void	test_ft_strlen()
@@ -208,16 +221,59 @@ void	test_ft_write()
 
 int main(void)
 {
-	printf(BBLU "\n__________________\nTesting FT_STRLEN \n__________________\n\n"reset);
+	int ret;
+	char buf[1];
+
+	printf ("Next test : ft_strlen. Ready ? (y to continue)\n");
+	ret = read(1, buf, 1);
+	if (strcmp(buf, "y") == 0)
+	{
+		printf(BBLU "\n__________________\nTesting FT_STRLEN \n__________________\n\n"reset);
 		test_ft_strlen();
-	printf(BBLU "\n__________________\nTesting FT_STRCPY \n__________________\n\n"reset);
+		buf[0] = 0;
+	}
+
+	printf ("Next test : ft_strcpy. Ready ? (y to continue)\n");
+	ret = read(1, buf, 1);
+	ret = read(1, buf, 1);
+
+	if (strcmp(buf, "y") == 0)
+	{
+		printf(BBLU "\n__________________\nTesting FT_STRCPY \n__________________\n\n"reset);
 		test_ft_strcpy();
-	printf(BBLU "\n__________________\nTesting FT_STRCMP \n__________________\n\n"reset);
+	}
+	printf ("Next test : ft_strcmp. Ready ? (y to continue)\n");
+
+	ret = read(1, buf, 1);
+	ret = read(1, buf, 1);
+	if (strcmp(buf, "y") == 0)
+	{
+		printf(BBLU "\n__________________\nTesting FT_STRCMP \n__________________\n\n"reset);
 		test_ft_strcmp();
-	printf(BBLU "\n__________________\nTesting FT_STRDUP \n__________________\n\n"reset);
+	}
+
+	printf ("Next test : ft_strdup. Ready ? (y to continue)\n");
+	ret = read(1, buf, 1);
+	ret = read(1, buf, 1);
+	if (strcmp(buf, "y") == 0)
+	{
+		printf(BBLU "\n__________________\nTesting FT_STRDUP \n__________________\n\n"reset);
 		test_ft_strdup();
-	printf(BBLU "\n__________________\nTesting FT_READ \n__________________\n\n"reset);
+	}
+
+	printf ("Next test : ft_read. Ready ? (y to continue)\n");
+	ret = read(1, buf, 1);
+	ret = read(1, buf, 1);
+	if (strcmp(buf, "y") == 0){
+		printf(BBLU "\n__________________\nTesting FT_READ \n__________________\n\n"reset);
 		test_ft_read();
-	printf(BBLU "\n__________________\nTesting FT_WRITE \n__________________\n\n"reset);
+	}
+
+	printf ("Next test : ft_write. Ready ? (y to continue)\n");
+	ret = read(1, buf, 1);
+	if (strcmp(buf, "y") == 0)
+	{
+		printf(BBLU "\n__________________\nTesting FT_WRITE \n__________________\n\n"reset);
 		test_ft_write();
+	}
 }
